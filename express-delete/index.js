@@ -22,16 +22,21 @@ let grades = {
   }
 };
 
-app.use('/api/grades/:id', (req, res) => {
+app.delete('/api/grades/:id', (req, res) => {
   const { id } = req.params;
   const result = Object.values(grades).filter(el => el.id !== Number(id));
   grades = result;
   res.send('success');
 });
 
-app.use('/api/grades', (req, res) => {
-  res.json(grades);
+app.get('/api/grades', (req, res) => {
+  const gradesArray = [];
+  for (const id in grades) {
+    gradesArray.push(grades[id]);
+  }
+  res.json(gradesArray);
 });
-
-// const port = 5000;
-// app.listen(port, () => console.log('iajdijfaisjfi'))
+app.listen(3000, () => {
+  // eslint-disable-next-line no-console
+  console.log('Express server is listening on port 3000!');
+});
