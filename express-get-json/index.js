@@ -22,9 +22,15 @@ const grades = {
   }
 };
 
-app.use('/api/grades', (req, res) => {
-  res.json(grades);
+app.get('/api/grades', (req, res) => {
+  const newArray = [];
+  for (const key in grades) {
+    newArray.push(grades[key]);
+  }
+  res.json(newArray);
 });
 
-// const port = 5000;
-// app.listen(port, () => console.log('listeningggg'))
+app.listen(3000, () => {
+  // eslint-disable-next-line no-console
+  console.log('Express server listening on port 3000');
+});
