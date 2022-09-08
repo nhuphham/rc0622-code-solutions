@@ -1,0 +1,46 @@
+* {
+  font-family: sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.bars {
+  cursor: pointer;
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+}
+
+.modal-content {
+  top: 0;
+  left: 0;
+  border: 1px solid white;
+  padding: 0 0 0 30px;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+}
+
+.modal-content a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 13px;
+  font-size: 12px;
+}
+
+.grey-background {
+  top: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / 50%);
+}
