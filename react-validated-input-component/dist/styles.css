@@ -1,0 +1,26 @@
+* {
+  font-family: sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.inline {
+  display: inline;
+}
+
+.x-mark {
+  margin-left: 5px;
+  color: red;
+}
+
+.check-mark {
+  margin-left: 5px;
+  color: green;
+}
+
+.red-text {
+  color: red;
+  margin-top: 2px;
+}
