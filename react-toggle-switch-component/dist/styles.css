@@ -1,0 +1,33 @@
+.outer {
+  position: relative;
+  background-color: #e2e2e2;
+  height: 36px;
+  width: 100px;
+  border-radius: 35px;
+  cursor: pointer;
+}
+
+.outer-on {
+  background-color: #6aa84f;
+}
+
+.circle {
+  position: absolute;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.circle-on {
+  top: 3px;
+  left: 67px;
+}
+
+.text {
+  margin-top: 5px;
+  margin-left: 35px;
+}
