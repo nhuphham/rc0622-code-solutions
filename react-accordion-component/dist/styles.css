@@ -1,0 +1,44 @@
+* {
+  font-family: sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.box {
+  border: 1px solid black;
+  width: 400px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.descript-box {
+  border: 1px solid black;
+  width: 400px;
+  background-color: white;
+}
+
+h3 {
+  margin: 5px 50px;
+}
+
+p {
+  margin: 10px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
