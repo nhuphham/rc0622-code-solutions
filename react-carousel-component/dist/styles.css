@@ -1,0 +1,38 @@
+.row {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.images-box {
+  border: 1px solid black;
+  width: 60%;
+  height: 275px;
+}
+
+.images {
+  max-height: 200px;
+  max-width: 200px;
+  margin: 20px 100px;
+}
+
+.arrows {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.circles {
+  margin-left: 3px;
+  margin-right: 3px;
+  cursor: pointer;
+}
