@@ -113,8 +113,9 @@ app.delete('/api/grades/:id', (req, res) => {
   db.query(sql, params)
     .then(result => {
       if (result.rowCount === 1) {
+        // eslint-disable-next-line no-unused-vars
         const message204 = { success: `gradeId ${id} was deleted.` };
-        return res.status(204).send(message204);
+        return res.sendStatus(204);
       } else {
         const message404 = { error: `cannot find note with id ${id}` };
         return res.status(404).send(message404);
