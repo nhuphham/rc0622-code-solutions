@@ -34,6 +34,19 @@ app.post('/api/uploads', uploadsMiddleware, (req, res, next) => {
    * - respond with the inserted row data
    * - catch any errors
    */
+  const url = `/images/${req.file.filename}`;
+  const sql = `
+      insert into "images" ("url", "caption")
+      values ($1, $2)
+      returning *
+  `;
+  const params = [url, caption];
+  db.query(sql, params)
+    .then(result => {
+      const row = result.rows;
+      res.json(row);
+    })
+    .catch(err => next(err));
 });
 
 app.get('/api/images', (req, res, next) => {
