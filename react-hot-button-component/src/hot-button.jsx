@@ -14,18 +14,22 @@ export default class HotButton extends React.Component {
   }
 
   render() {
+    let btnClass = '';
+
     if (this.state.clicks <= 3) {
-      return <button className="purple" onClick={this.clickCount}>Hot Button</button>;
+      btnClass = 'purple';
     } else if (this.state.clicks <= 6) {
-      return <button className="light-purple" onClick={this.clickCount}>Hot Button</button>;
+      btnClass = 'light-purple';
     } else if (this.state.clicks <= 9) {
-      return <button className="red" onClick={this.clickCount}>Hot Button</button>;
+      btnClass = 'red';
     } else if (this.state.clicks <= 12) {
-      return <button className="orange" onClick={this.clickCount}>Hot Button</button>;
+      btnClass = 'orange';
     } else if (this.state.clicks <= 15) {
-      return <button className="yellow" onClick={this.clickCount}>Hot Button</button>;
+      btnClass = 'yellow';
     } else {
-      return <button className="white" onClick={this.clickCount}>Hot Button</button>;
+      btnClass = 'white';
     }
+
+    return <button className={btnClass} onClick={this.clickCount}>Hot Button</button>;
   }
 }
