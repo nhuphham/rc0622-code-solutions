@@ -55,14 +55,14 @@ function Product(props) {
   /* this anchor should go to product details at `#products?productId=${productId}` */
   return (
     <a
-      href=""
+      href={`#products?productId=${productId}`}
       style={styles.product}
       className="text-dark card mb-4 shadow-sm text-decoration-none">
-      <img src={imageUrl} className="card-img-top" alt={name} style={styles.image}/>
+      <img src={imageUrl} className="card-img-top" alt={name} style={styles.image} />
       <div className="card-body">
-        <h5 className="card-title">{ name }</h5>
-        <p className="card-text text-secondary">{ toDollars(price) }</p>
-        <p className="card-text" style={styles.description}>{ shortDescription }</p>
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text text-secondary">{toDollars(price)}</p>
+        <p className="card-text" style={styles.description}>{shortDescription}</p>
       </div>
     </a>
   );

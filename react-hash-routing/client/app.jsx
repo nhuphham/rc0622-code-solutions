@@ -19,6 +19,10 @@ export default class App extends React.Component {
      * Each time the window.location.hash changes, parse
      * it with the parseRoute() function and update state
      */
+    window.addEventListener('hashchange', e => {
+      const parsed = parseRoute(window.location.hash);
+      this.setState({ route: parsed });
+    });
   }
 
   renderPage() {
@@ -37,7 +41,7 @@ export default class App extends React.Component {
     return (
       <>
         <Header />
-        { this.renderPage() }
+        {this.renderPage()}
       </>
     );
   }

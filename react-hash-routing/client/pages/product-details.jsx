@@ -38,7 +38,7 @@ export default class ProductDetails extends React.Component {
             <div className="row">
               <div className="col">
                 {/* this anchor should go back to the catalog at '#' */}
-                <a href="" className="btn text-secondary">
+                <a href="#" className="btn text-secondary">
                   &lt; Back to catalog
                 </a>
               </div>
@@ -48,15 +48,15 @@ export default class ProductDetails extends React.Component {
                 <img src={imageUrl} alt={name} style={styles.image} />
               </div>
               <div className="col-12 col-sm-6 col-md-7">
-                <h2>{ name }</h2>
-                <h5 className="text-secondary">{ toDollars(price) }</h5>
-                <p>{ shortDescription }</p>
+                <h2>{name}</h2>
+                <h5 className="text-secondary">{toDollars(price)}</h5>
+                <p>{shortDescription}</p>
               </div>
             </div>
             <div className="row">
               <div className="col">
                 <p style={styles.longDescription}>
-                  { longDescription }
+                  {longDescription}
                 </p>
               </div>
             </div>
