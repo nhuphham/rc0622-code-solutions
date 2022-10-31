@@ -1,0 +1,82 @@
+User can sign up.
+  - when the client(user) opens the website, index.jsx executes
+  - index.jsx renders the app.jsx component
+    - constructor gets defined
+    - render method gets returned as null
+    - componentDidMount method runs and ultimately only changes the isAuthorizing property value to false
+      - setState triggers render method to run again, but this time returns components
+      - the return also calls the renderPage function
+      - function checks the path of the URL sign-up path is truthy
+        - returns Auth component
+          - jumps to the auth.jsx file where the render method of AuthPage class gets called
+          - condition is checked to determine welcome message
+          - returns a react div element that also contains a jsx component (AuthForm)
+            - jumps to auth-form.jsx where AuthForm component gets executed
+              - constructor gets defined and render method is called
+              - whenever the user types, the onChange event listener method gets called with the handleChange method
+              - handleChange method updates the state of the username and password
+              - when user submits the form, the onSubmit event listener gets called with the handleSubmit method
+              - handleSubmit method fills in the request method, headers, and body with the state object
+              - calls the fetch method with the approprite route (sign-up)
+              - fetch sends a request to '/api/auth/sign-up' with new user and password
+              - the server checks the request body to ensure there is a username and password property/values
+                - if username and password are NOT provided
+                  - ClientError function is called with 2 arguments (status code, message)
+                  - jumps to ./client-error.js file where the ClientError class is being executed
+                  - exports the return of the ClientError class back to index.js file and the remaining stack is thrown
+                - if username and password ARE provided
+                  - server calls the hash method of the argon2 object on the password
+                  - the username and hashed password gets stored in an array
+                  - and the query method of db object gets called with an INSERT statement using the arrays as values
+                  - the database then runs the INSERT statement
+                  - returns the result to the server
+                  - responds back to the client with a status code and a json string of and object within an array containing
+                    userId, username and createAt properties/values
+                - if an error occurs at any given point, the server calls the catch method
+                  - server finds and calls the the next middleware (errorMiddleware)
+                  - jumps to the error-middleware.js file where the errorMiddleware is executed
+                    - function checks which instance the error belongs to and server sends out the status code / message
+
+User can sign in.
+  - sign-in is similar to sign-up except sign-in path of renderPage function is truthy which also returns Auth component
+  - Auth component contains AuthForm component, which functions the same as sign-up
+  - fetch instead sends a request to '/api/auth/sign-in' with user and password
+  - similar to sign-up, server checks the body for username and pasword, throws and error if it's missing
+  - if valid then the server sends a sql SELECT statement to return the userId/hashedPassword where the username matches in the db
+  - if NO results, then ClientError function gets thrown
+  - if there IS results, then the sign-in password is hashed like in sign-up
+  - if the hashed passwords does NOT match then ClientError is thrown
+  - if it does matched then the userId and username gets stored in an 'payload' object
+  - the sign method of the jwt object gets called with 2 argument (payload object and the secret token)
+  - the server responds with the signed token and payload object
+  - then if the path was sign-in, the onSignIn method is called with the results as an argument
+    - which passes the return to the AuthForm component in the render method auth.jsx
+    - which has the value of another JS expression handleSignIn that jumps back to the App.jsx module
+      - handleSignIn destrctures the user and token property of the result and stores the token into local storange and
+        changes the state of user from null to the user object
+  - also similar to sign-up, if an error occurs at any given point then the catch method is called
+    - error gets passed to the neext middleware (errorMiddleware) and returns an error message
+
+User can stay signed in (even if they refresh the page).
+  - when the user refreshes the page, the componentDidMount method of app.jsx gets called
+  - the URL gets stored in the route property of this.state
+  - the token gets retrieved from local storage and checks if a token is actually there
+  - if so then the token gets decoded and stored in the users property of this.state
+  - the value of isAuthorizing property of this.state is also set to false
+    - which allows for the rerendering of the page
+    - renderPage method gets called which returns a home component
+    - the home component render method gets called
+      - conditon wthin render method checks if a the user property has a value
+        - if not then redirect component gets returned
+          - redirect component redirects to the sign-in page
+
+User can sign out.
+  - like the previous steps, page gets rendered with a few components, one being the Navbar component
+    - this component contains a signout button with an onClick event listener
+    - when the clicks "signout, the handleSignOut method of app.jsx module gets called
+    - local storage removes the token and sets the state of users to null
+    - setState invokes the render method to be called again
+    - returns a bunch of components and also calls the renderPage function
+      - since the path is still '', it renders the home component
+        - BUT the condition within the Home component checks for a user
+          - and since there is no user, it returns the redirect component which redirects to sign-in page
